@@ -1,44 +1,45 @@
 # Climate Anomaly Forecasting using Bayesian Deep Belief Networks
 
-This project is part of **Team 19** at Amrita Vishwa Vidyapeetham.  
-It integrates **Deep Learning** and **Probability** concepts to forecast climate anomalies using **ERA5 Reanalysis Data**.
+This project explores forecasting of climate anomalies using **Bayesian Deep Belief Networks (DBNs)** with ERA5 reanalysis data.
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
-Project/
-│── data_raw/                # Raw ERA5 data (NetCDF files)
-│   ├── era5_smoke_t2m_2020-01-01_00.nc   # Single-day sample data
-│   └── era5_t2m_jan_feb_2020.nc          # 2-month dataset (Jan–Feb 2020)
-│
-│── src/                     # Python scripts
-│   ├── download_era5_smoke.py   # Downloads 1 day of ERA5 data
-│   ├── download_era5_range.py   # Downloads ERA5 data for a date range
-│   ├── inspect_smoke.py         # Inspects single-day dataset
-│   └── inspect_range.py         # Inspects range dataset (basic stats)
-│
-│── README.md                # Project documentation
-│── requirements.txt         # List of dependencies
+├── .venv/                # Virtual environment (ignored in Git)
+├── data_raw/              # Raw ERA5 NetCDF files (NOT pushed to GitHub)
+├── src/                   # Python source code
+│   ├── download_era5_range.py   # Script to download ERA5 data for a given date range
+│   ├── download_era5_smoke.py   # Example "smoke test" data download
+│   ├── inspect_range.py         # Inspect downloaded range dataset
+│   ├── inspect_smoke.py         # Inspect sample smoke dataset
+│   └── plot_smoke.py            # Quick plot utility for smoke dataset
+├── requirements.txt       # Python dependencies
+└── README.md              # Project documentation
 ```
 
 ---
 
-## ⚙️ Installation
+## Data
 
-Clone the repository and create a virtual environment:
+Raw ERA5 reanalysis data (NetCDF files) are stored locally in the `data_raw/` folder but are **not pushed to GitHub** to keep the repository lightweight.
+
+### Downloading ERA5 Data
+
+To download ERA5 data:
 
 ```bash
-git clone https://github.com/Anto-Rishath008/climate-anomaly-bayesian-dbns.git
-cd climate-anomaly-bayesian-dbns
-
-# Create virtual environment
-python -m venv .venv
-.venv\Scripts\activate   # (Windows)
+python src/download_era5_range.py
 ```
 
-Install dependencies:
+This will fetch ERA5 temperature data into the `data_raw/` folder.
+
+---
+
+## Requirements
+
+Install dependencies with:
 
 ```bash
 pip install -r requirements.txt
@@ -46,47 +47,24 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Usage
+## Running the Code
 
-1. **Download single-day sample data**  
+1. Activate your virtual environment:
    ```bash
-   python src/download_era5_smoke.py
+   .venv\Scripts\activate   # On Windows
+   source .venv/bin/activate  # On Mac/Linux
    ```
 
-2. **Inspect the dataset**  
-   ```bash
-   python src/inspect_smoke.py
-   ```
+2. Run scripts from the `src/` folder.
 
-3. **Download a date range (e.g., Jan–Feb 2020)**  
-   ```bash
-   python src/download_era5_range.py
-   ```
-
-4. **Inspect the range dataset**  
-   ```bash
-   python src/inspect_range.py
-   ```
+Example:
+```bash
+python src/inspect_range.py
+```
 
 ---
 
-## 📊 Outputs
+## Notes
 
-- `era5_smoke_t2m_2020-01-01_00.nc` → Single-day dataset (~70 KB)  
-- `era5_t2m_jan_feb_2020.nc` → Two-month dataset (~4 MB)  
-- Inspection scripts show dataset dimensions, mean, min, max temperatures.
-
----
-
-## 🎯 Goal
-
-We will extend this pipeline to build a **Bayesian Deep Belief Network** for climate anomaly forecasting,  
-combining **probability theory** and **deep learning** principles as part of our course project.
-
----
-
-## 👥 Team 19
-
-- Vysakh Unnikrishnan (CB.SC.U4AIE23161)  
-- Anto Rishath (CB.SC.U4AIE23103)  
-- Abhishek Sankaramani (CB.SC.U4AIE23107)
+- `data_raw/` is excluded from version control to avoid large file uploads.
+- Teachers/teammates can regenerate the data by running the download scripts.
