@@ -1,0 +1,16 @@
+RMSE (z-score): 0.7171
+MAE  (z-score): 0.4464
+Correlation    : 0.7473
+Average predictive std: 0.4310
+Truth std (z-score space): 1.0656
+Accuracy (%): 32.70
+Model: Conv+DBN (Gaussian NLL)
+Date: 2025-08-20 21:32
+RMSE(z): 0.6984
+MAE(z): 0.4388
+Corr: 0.7619 (76.19%)
+±1σ accuracy: 89.58%
+Skill vs climatology (MSE): 57.90%
+Source preds: data_processed/preds_mean_std_conv_nll.npz
+----
+
