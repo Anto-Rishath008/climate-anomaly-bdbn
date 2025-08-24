@@ -63,17 +63,17 @@ python src/evaluate_and_plots.py --pred data_processed/preds_mean_std_conv_nll.n
 
 We model each prediction as Gaussian:
 
-\[
+$$
 p(y \mid x, \theta) = \mathcal{N}(y; \mu_\theta(x), \sigma^2_\theta(x))
-\]
+$$
 
 Training objective (Negative Log-Likelihood, NLL):
 
-\[
-\mathcal{L}_{\text{NLL}} = \frac{1}{2} \sum_i \left[
+$$
+\mathcal{L}_{\text{NLL}} = \frac{1}{2} \sum_i \left(
 \frac{(y_i - \mu_\theta(x_i))^2}{\sigma^2_\theta(x_i)} + \log \sigma^2_\theta(x_i)
-\right]
-\]
+\right)
+$$
 
 This ensures learning both **accurate means** and **well-calibrated uncertainties**.
 
