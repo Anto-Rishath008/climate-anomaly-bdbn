@@ -1,19 +1,32 @@
-# Virtual environment
-.venv/
-venv/
-
-# Python cache
+# --- Python/IDE junk ---
 __pycache__/
-*.pyc
-
-# Jupyter
+*.py[cod]
+*.egg-info/
 .ipynb_checkpoints/
-
-# Data files
-*.nc
-data_raw/
-data_processed/
-
-# System files
 .DS_Store
 Thumbs.db
+
+# --- Virtual envs & tooling ---
+.venv/
+.env/
+.envrc
+.vscode/
+.idea/
+
+# --- Logs & temp ---
+*.log
+*.tmp
+*.swp
+*.bak
+
+# --- Figures (keep images) ---
+!figures/
+!figures/*.png
+
+# --- Data (ALLOW committing; large files will go to LFS) ---
+!data_raw/
+!data_processed/
+!data_raw/**
+!data_processed/**
+
+# If you later want to hide *generated* huge artifacts, comment-out the four lines above.
