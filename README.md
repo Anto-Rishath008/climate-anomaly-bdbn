@@ -1,7 +1,6 @@
 # Climate Anomaly Forecasting using Bayesian DBNs
 
-This repository implements **Bayesian Deep Belief Networks (DBNs)** for forecasting climate anomalies using ERA5 reanalysis data.  
-The project integrates **probabilistic reasoning** to provide not only point predictions but also **uncertainty estimates**.
+This repository implements **Bayesian Deep Belief Networks (DBNs)** for forecasting climate anomalies using ERA5 reanalysis data. The project integrates **probabilistic reasoning** to provide not only point predictions but also **uncertainty estimates**.
 
 ---
 
@@ -11,8 +10,6 @@ The project integrates **probabilistic reasoning** to provide not only point pre
 ├── src/                     # Training & evaluation scripts
 │   ├── train_dbn_conv_nll.py
 │   ├── evaluate_and_plots.py
-│   ├── train_dbn_conv_svi.py (experimental)
-│   ├── evaluate_and_plots_svi.py (experimental)
 ├── data_raw/                # Raw ERA5 data (netCDF/NPZ)
 ├── data_processed/          # Train/val splits, metrics, predictions
 ├── figures/                 # Plots & evaluation curves
@@ -39,9 +36,9 @@ pip install -r requirements.txt
 
 ---
 
-## ⚡ Training
+## ⚡ Training and Evaluation
 
-### Train with NLL (Recommended)
+### Train with Negative Log-Likelihood
 ```bash
 python src/train_dbn_conv_nll.py --epochs 150 --anom_k 1.0
 ```
@@ -51,21 +48,14 @@ python src/train_dbn_conv_nll.py --epochs 150 --anom_k 1.0
 python src/evaluate_and_plots.py --pred data_processed/preds_mean_std_conv_nll.npz
 ```
 
-### Train with SVI (Experimental)
-```bash
-python src/train_dbn_conv_svi.py --epochs 300 --samples 500 --guide full
-```
-
 ---
 
 ## 📊 Results
 
-- **NLL model**:  
-  - RMSE (z-score): ~1.01  
-  - MAE (z-score): ~0.68  
-  - Within‑tolerance accuracy (±1σ): ~76%  
-- **SVI model**:  
-  - Experimental, unstable convergence in current dataset scale
+- **NLL model**:
+  - RMSE (z-score): ~1.01
+  - MAE (z-score): ~0.68
+  - Within‑tolerance accuracy (±1σ): ~76%
 
 ---
 
@@ -89,30 +79,23 @@ This ensures learning both **accurate means** and **well-calibrated uncertaintie
 
 ---
 
-## ✅ Why NLL over SVI?
-
-- **NLL**: Stable, efficient, calibrated uncertainty.  
-- **SVI**: Fully Bayesian (distributions over weights), but unstable and slower for our dataset.  
-- **Conclusion**: NLL chosen as final training objective.
-
----
-
 ## 🌐 Web App Plan
 
-We aim to deploy the trained model into a **Flask/Django + React frontend app** where:  
-- Users can query anomaly forecasts.  
-- Predictions will include **confidence intervals**.  
+We aim to deploy the trained model into a **Flask/Django + React frontend app** where:
+- Users can query anomaly forecasts.
+- Predictions will include **confidence intervals**.
 
 ---
 
 ## 👨‍💻 Authors
 
-Team 19, Amrita Vishwa Vidyapeetham  
-- Vysakh Unnikrishnan (CB.SC.U4AIE23161)  
-- Anto Rishath (CB.SC.U4AIE23103)  
+Team 19, Amrita Vishwa Vidyapeetham
+- Vysakh Unnikrishnan (CB.SC.U4AIE23161)
+- Anto Rishath (CB.SC.U4AIE23103)
 - Abhishek Sankaramani (CB.SC.U4AIE23107)
 
 ---
 
 ## 📜 License
 MIT License © 2025 Team 19
+
