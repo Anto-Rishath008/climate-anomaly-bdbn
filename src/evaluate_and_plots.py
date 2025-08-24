@@ -6,19 +6,26 @@ from pathlib import Path
 
 def load_preds(pred_path):
     data = np.load(pred_path, allow_pickle=True)
-    # prefer flattened shapes (N, HW) if present
-    y_pred = data["y_pred"]
-    y_std  = data["y_std"]
+    # handle different naming conventions for predictions
+    if "y_pred" in data and "y_std" in data:
+        y_pred = data["y_pred"]
+        y_std = data["y_std"]
+    else:
+        # earlier scripts saved arrays as mean/std
+        y_pred = data["mean"]
+        y_std = data["std"]
+
     if "y_true" in data:
         y_true = data["y_true"]
+    elif "truth" in data:
+        y_true = data["truth"]
     else:
         # fallback to separate truth file if not bundled
         tv = np.load("data_processed/train_val.npz")
         y_true_full = tv["y_val"]  # (N, H, W)
         # match shapes
         if y_pred.ndim == 2:  # (N, HW)
-            N, HW = y_pred.shape
-            H, W = y_true_full.shape[1], y_true_full.shape[2]
+            N = y_pred.shape[0]
             y_true = y_true_full.reshape(N, -1)
         else:
             y_true = y_true_full
