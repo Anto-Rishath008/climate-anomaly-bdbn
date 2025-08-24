@@ -1,70 +1,118 @@
-# Climate Anomaly Forecasting using Bayesian Deep Belief Networks
+# Climate Anomaly Forecasting using Bayesian DBNs
 
-This project explores forecasting of climate anomalies using **Bayesian Deep Belief Networks (DBNs)** with ERA5 reanalysis data.
-
----
-
-## Project Structure
-
-```
-├── .venv/                # Virtual environment (ignored in Git)
-├── data_raw/              # Raw ERA5 NetCDF files (NOT pushed to GitHub)
-├── src/                   # Python source code
-│   ├── download_era5_range.py   # Script to download ERA5 data for a given date range
-│   ├── download_era5_smoke.py   # Example "smoke test" data download
-│   ├── inspect_range.py         # Inspect downloaded range dataset
-│   ├── inspect_smoke.py         # Inspect sample smoke dataset
-│   └── plot_smoke.py            # Quick plot utility for smoke dataset
-├── requirements.txt       # Python dependencies
-└── README.md              # Project documentation
-```
+This repository implements **Bayesian Deep Belief Networks (DBNs)** for forecasting climate anomalies using ERA5 reanalysis data.  
+The project integrates **probabilistic reasoning** to provide not only point predictions but also **uncertainty estimates**.
 
 ---
 
-## Data
+## 📂 Project Structure
+```
+.
+├── src/                     # Training & evaluation scripts
+│   ├── train_dbn_conv_nll.py
+│   ├── evaluate_and_plots.py
+│   ├── train_dbn_conv_svi.py (experimental)
+│   ├── evaluate_and_plots_svi.py (experimental)
+├── data_raw/                # Raw ERA5 data (netCDF/NPZ)
+├── data_processed/          # Train/val splits, metrics, predictions
+├── figures/                 # Plots & evaluation curves
+├── README.md
+├── .gitignore
+└── .gitattributes
+```
 
-Raw ERA5 reanalysis data (NetCDF files) are stored locally in the `data_raw/` folder but are **not pushed to GitHub** to keep the repository lightweight.
+---
 
-### Downloading ERA5 Data
-
-To download ERA5 data:
-
+## 🚀 Setup
 ```bash
-python src/download_era5_range.py
-```
+# Clone repo
+git clone https://github.com/Anto-Rishath008/climate-anomaly-bayesian-dbns.git
+cd climate-anomaly-bayesian-dbns
 
-This will fetch ERA5 temperature data into the `data_raw/` folder.
+# Setup venv
+python -m venv .venv
+source .venv/bin/activate   # or .venv\Scripts\activate on Windows
 
----
-
-## Requirements
-
-Install dependencies with:
-
-```bash
+# Install dependencies
 pip install -r requirements.txt
 ```
 
 ---
 
-## Running the Code
+## ⚡ Training
 
-1. Activate your virtual environment:
-   ```bash
-   .venv\Scripts\activate   # On Windows
-   source .venv/bin/activate  # On Mac/Linux
-   ```
-
-2. Run scripts from the `src/` folder.
-
-Example:
+### Train with NLL (Recommended)
 ```bash
-python src/inspect_range.py
+python src/train_dbn_conv_nll.py --epochs 150 --anom_k 1.0
+```
+
+### Evaluate
+```bash
+python src/evaluate_and_plots.py --pred data_processed/preds_mean_std_conv_nll.npz
+```
+
+### Train with SVI (Experimental)
+```bash
+python src/train_dbn_conv_svi.py --epochs 300 --samples 500 --guide full
 ```
 
 ---
 
-## Notes
+## 📊 Results
 
-- `data_raw/` is excluded from version control to avoid large file uploads.
-- Teachers/teammates can regenerate the data by running the download scripts.
+- **NLL model**:  
+  - RMSE (z-score): ~1.01  
+  - MAE (z-score): ~0.68  
+  - Within‑tolerance accuracy (±1σ): ~76%  
+- **SVI model**:  
+  - Experimental, unstable convergence in current dataset scale
+
+---
+
+## 🔢 Mathematical Background
+
+We model each prediction as Gaussian:
+
+\[
+p(y \mid x, \theta) = \mathcal{N}(y; \mu_\theta(x), \sigma^2_\theta(x))
+\]
+
+Training objective (Negative Log-Likelihood, NLL):
+
+\[
+\mathcal{L}_{\text{NLL}} = \frac{1}{2} \sum_i \left[
+\frac{(y_i - \mu_\theta(x_i))^2}{\sigma^2_\theta(x_i)} + \log \sigma^2_\theta(x_i)
+\right]
+\]
+
+This ensures learning both **accurate means** and **well-calibrated uncertainties**.
+
+---
+
+## ✅ Why NLL over SVI?
+
+- **NLL**: Stable, efficient, calibrated uncertainty.  
+- **SVI**: Fully Bayesian (distributions over weights), but unstable and slower for our dataset.  
+- **Conclusion**: NLL chosen as final training objective.
+
+---
+
+## 🌐 Web App Plan
+
+We aim to deploy the trained model into a **Flask/Django + React frontend app** where:  
+- Users can query anomaly forecasts.  
+- Predictions will include **confidence intervals**.  
+
+---
+
+## 👨‍💻 Authors
+
+Team 19, Amrita Vishwa Vidyapeetham  
+- Vysakh Unnikrishnan (CB.SC.U4AIE23161)  
+- Anto Rishath (CB.SC.U4AIE23103)  
+- Abhishek Sankaramani (CB.SC.U4AIE23107)
+
+---
+
+## 📜 License
+MIT License © 2025 Team 19
