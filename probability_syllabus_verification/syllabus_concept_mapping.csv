@@ -1,0 +1,6 @@
+,Mathematical Foundation,Climate Application,Key Functions,Syllabus Topics
+Bayesian Inference,P(θ|data) ∝ P(data|θ) × P(θ),Anomaly detection with uncertainty quantification,"['detect_anomalies_bayesian_inference', 'BayesianAnomalyNetwork']","['Bayes theorem', 'Prior/posterior distributions', 'Conjugate analysis']"
+Markov Chains,P(X_t | X_{t-1}) - Markov property,Climate regime transition modeling,"['detect_anomalies_markov_chains', 'ClimateHiddenMarkovModel']","['Transition matrices', 'Stationary distributions', 'Chapman-Kolmogorov']"
+Probability Distributions,"P(x) = Σ π_k N(x; μ_k, σ²_k)",Multi-modal climate pattern modeling,"['detect_anomalies_probability_distributions', 'GaussianMixture']","['Gaussian mixtures', 'Extreme value theory', 'MLE estimation']"
+Statistical Inference,H₀: μ = μ₀ vs H₁: μ ≠ μ₀,Hypothesis testing for climate anomalies,"['detect_anomalies_statistical_inference', 'bootstrap methods']","['t-tests', 'Multiple testing', 'Confidence intervals']"
+Information Theory,H(X) = -Σ p(x) log p(x),Climate complexity and dependency analysis,"['detect_anomalies_information_theory', 'entropy calculation']","['Shannon entropy', 'Mutual information', 'KL divergence']"

@@ -1,0 +1,39 @@
+{
+  "n_samples": 2000,
+  "n_timesteps": 30,
+  "n_variables": 10,
+  "spatial_shape": [
+    31,
+    61
+  ],
+  "variable_names": [
+    "t2m",
+    "msl",
+    "u10",
+    "v10",
+    "tp",
+    "d2m",
+    "tcc",
+    "sp",
+    "t_500",
+    "u_500",
+    "v_500",
+    "z_500",
+    "r_500",
+    "cape",
+    "sst",
+    "tcwv"
+  ],
+  "target_mean": 20.234763791588275,
+  "target_std": 4.5849626951170785,
+  "enhanced_n_variables": 53,
+  "creation_date": "2025-09-26T01:35:33.465457",
+  "target_accuracy": "90%+",
+  "enhancement_features": [
+    "temporal_trends",
+    "moving_averages",
+    "spatial_gradients",
+    "cross_variable_interactions",
+    "climate_indices"
+  ]
+}

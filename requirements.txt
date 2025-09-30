@@ -1,0 +1,14 @@
+numpy
+pandas
+matplotlib
+seaborn
+xarray
+netCDF4
+cfgrib
+cdsapi
+torch
+torchvision
+torchaudio
+pyro-ppl
+notebook
+jupyterlab

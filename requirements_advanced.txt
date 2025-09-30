@@ -1,0 +1,53 @@
+# Advanced Requirements for 90%+ Climate Prediction Accuracy
+
+# Core Deep Learning
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Scientific Computing
+numpy>=1.24.0
+scipy>=1.10.0
+pandas>=2.0.0
+xarray>=2023.1.0
+netcdf4>=1.6.0
+
+# Machine Learning
+scikit-learn>=1.3.0
+scikit-image>=0.20.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.14.0
+
+# Climate Data
+cdsapi>=0.6.1
+ecmwf-api-client>=1.6.3
+
+# Advanced Training
+wandb>=0.15.0  # For experiment tracking (optional)
+tensorboard>=2.13.0
+transformers>=4.30.0  # For attention mechanisms
+
+# Optimization
+optuna>=3.2.0  # For hyperparameter optimization (optional)
+
+# Utilities
+tqdm>=4.65.0
+rich>=13.0.0
+click>=8.1.0
+pyyaml>=6.0
+h5py>=3.8.0
+
+# Parallel Computing
+joblib>=1.2.0
+multiprocess>=0.70.0
+
+# Image Processing
+opencv-python>=4.7.0
+pillow>=9.5.0
+
+# Additional Scientific Libraries
+astropy>=5.2.0  # For advanced statistical functions
+pyproj>=3.5.0   # For geographic projections

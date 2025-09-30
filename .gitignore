@@ -1,0 +1,51 @@
+# --- Python/IDE junk ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# --- Virtual envs & tooling ---
+.venv/
+.env/
+.envrc
+.vscode/
+.idea/
+
+# --- Logs & temp ---
+*.log
+*.tmp
+*.swp
+*.bak
+
+# --- Large data files ---
+*.npz
+*.nc
+*.pth
+*.onnx
+
+# --- Node modules ---
+climate-anomaly-webapp/node_modules/
+
+# --- Data directories with large files ---
+data_raw/
+data_processed/
+data_advanced/
+comprehensive_climate_anomalies.npz
+
+# --- Results with large model files ---
+results_90acc/*.pth
+results_90acc/*.npz
+
+# --- Figures (keep images) ---
+!figures/
+!figures/*.png
+
+# --- Data (ALLOW committing; large files will go to LFS) ---
+!data_raw/
+!data_processed/
+!data_raw/**
+!data_processed/**
+
+# If you later want to hide *generated* huge artifacts, comment-out the four lines above.

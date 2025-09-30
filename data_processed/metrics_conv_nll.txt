@@ -1,0 +1,2 @@
+Validation RMSE (z): 1.0195
+Average predictive std (z): 0.8552
